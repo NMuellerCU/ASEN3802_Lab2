@@ -11,6 +11,7 @@ data = cell(1,length(a));
 %% Reading Data into Cell Array
 
 for i=1:length(a)    
+    warning('off', 'all');
     data{i} = readtable(a(i).name);
     % how to get voltage and amperage from file names?
     % - options include strsplit, regex, etc.
