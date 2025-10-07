@@ -12,6 +12,6 @@ function [fit_data] = initial_slope(data,x_pos)
     end
 
     % Converting fit_data into table
-    fit_data = array2table(fit_data,"VariableNames",['Slope','T_0']);
+    fit_data = array2table(fit_data,"VariableNames",{'Slope','T_0'});
 
 end

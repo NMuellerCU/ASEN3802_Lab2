@@ -20,3 +20,7 @@ end
 %% Calling Initial State Slope
 
 [fit_data] = initial_slope(data,ch_position);
+
+%% Plotting Initial Temperatures
+
+plot_init_temp(ch_position,data,fit_data,file_info);
