@@ -19,8 +19,16 @@ end
 
 %% Calling Initial State Slope
 
-[fit_data] = initial_slope(data,ch_position);
+[fit_data_init] = initial_slope(data,ch_position);
 
 %% Plotting Initial Temperatures
 
-plot_init_temp(ch_position,data,fit_data,file_info);
+plot_init_temp(ch_position,data,fit_data_init,file_info);
+
+%% Calling Steady State Slope
+
+[steady_temp,fit_data_steady] = steady_slope(data,ch_position);
+
+%% Plotting Steady State Temperatures
+
+% plot_steady_temp(ch_position,steady_temp,fit_data_steady,file_info);
