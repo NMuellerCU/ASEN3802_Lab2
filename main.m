@@ -7,7 +7,7 @@ clc;
 
 %% Establishing Key Constants
 
-const = const();
+const = get_const();
 
 %% Reading in Data
 
@@ -33,8 +33,23 @@ T_0 = table2array(init.fit_data(:,2));
 %% Plotting Initial Temperatures
 
 % Final parameter input: (1 = initial, 0 = steady)
-plot_temp_slope(const.ch_position,init.temp,init.fit_data,file_info,T_0,0,1);
+% plot_temp_slope(const.ch_position,init.temp,init.fit_data,file_info,T_0,0,1);
 
 %% Plotting Steady State Temperatures
 
-plot_temp_slope(const.ch_position,steady.temp,steady.fit_data,file_info,steady.fit_data(:,2),steady.approx_steady_slope,0);
+% plot_temp_slope(const.ch_position,steady.temp,steady.fit_data,file_info,steady.fit_data(:,2),steady.approx_steady_slope,0);
+
+%% Plotting Analytical Transient Solution Derivation
+
+% Aluminum 25V, t = 1s
+% plot_transient_analytical(steady.approx_steady_slope(1),T_0(1),const.ch_position(end),[1,1000],const,1)
+
+%% Calculating u(x,t) for each model
+
+% Time Matrix
+t_vec = [length(data(1))*10,length(data(2))*10,length(data(3))*10,length(data(4))*10,length(data(5))*10];
+
+% Model 1a
+u_model_1a = calc_u_models(3,steady.approx_steady_slope,[],T_0,const.ch_position,t,const,[1,1,2,2,3],1);
+
+% Model 2a
