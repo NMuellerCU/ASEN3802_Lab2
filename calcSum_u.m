@@ -1,4 +1,4 @@
-function [u] = calcSum_u(n,H,T_0,x,t,const,material_num)
+function [u] = calcSum_u(n,H,M,T_0,x,t,const,material_num,model_num)
 
     % Calculating 
     u = T_0 + H*x; % steady state
@@ -7,7 +7,7 @@ function [u] = calcSum_u(n,H,T_0,x,t,const,material_num)
         for i = 1:n
             
             % Calculating b_n
-            b_n = calc_b_n(i,H,const);
+            b_n = calc_b_n(i,H,M,const,model_num);
 
             % Calculating lambda_n
             lambda_n = calc_lambda_n(i,const);
@@ -30,12 +30,14 @@ function [u] = calcSum_u(n,H,T_0,x,t,const,material_num)
     end
 
     %% Function to calculate the b_n
-    function [b_n] = calc_b_n(n,H,const)
+    function [b_n] = calc_b_n(n,H,M,const,model_num)
 
         if (n == 0)
             b_n = 0;
-        else
+        elseif model_num == 1
             b_n = 8*H*const.L*(-1)^n / ((2*n - 1)*pi)^2;
+        elseif model_num == 2
+            b_n = 8*(M-H)*const.L*(-1)^(n+1) / ((2*n-1)*pi)^2;
         end
 
     end

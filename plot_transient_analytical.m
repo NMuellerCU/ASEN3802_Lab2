@@ -7,7 +7,7 @@ function [] = plot_transient_analytical(H,T_0,x,t,const,material_num)
     % Calculating sum_u vector
     for j = 1:length(t)
         for i = n
-            sum_u(j,i+1) = calcSum_u(i,H,T_0,x,t(j),const,material_num);
+            sum_u(j,i+1) = calcSum_u(i,H,[],T_0,x,t(j),const,material_num,1);
         end
     end
 
