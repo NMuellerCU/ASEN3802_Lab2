@@ -1,19 +1,19 @@
 function [] = plot_transient(exp_data,model_data,model_num,file_info)
 
-    figure()
+    figure('Position',[50 50 600 700],'Units','Inches')
 
     for i = 1:length(model_data)
-        subplot(2,3,i)
+        subplot(3,2,i)
 
         hold on
-        % plot(exp_data{i}.Time_s_,exp_data{i}.CH1__C_,"k",LineWidth=1.5)
-        % plot(exp_data{i}.Time_s_,exp_data{i}.CH2__C_,"k",LineWidth=1.5)
-        % plot(exp_data{i}.Time_s_,exp_data{i}.CH3__C_,"k",LineWidth=1.5)
-        % plot(exp_data{i}.Time_s_,exp_data{i}.CH4__C_,"k",LineWidth=1.5)
-        % plot(exp_data{i}.Time_s_,exp_data{i}.CH5__C_,"k",LineWidth=1.5)
-        % plot(exp_data{i}.Time_s_,exp_data{i}.CH6__C_,"k",LineWidth=1.5)
-        % plot(exp_data{i}.Time_s_,exp_data{i}.CH7__C_,"k",LineWidth=1.5)
-        % plot(exp_data{i}.Time_s_,exp_data{i}.CH8__C_,"k",LineWidth=1.5)
+        plot(exp_data{i}.Time_s_,exp_data{i}.CH1__C_,"k",LineWidth=1.5)
+        plot(exp_data{i}.Time_s_,exp_data{i}.CH2__C_,"k",LineWidth=1.5)
+        plot(exp_data{i}.Time_s_,exp_data{i}.CH3__C_,"k",LineWidth=1.5)
+        plot(exp_data{i}.Time_s_,exp_data{i}.CH4__C_,"k",LineWidth=1.5)
+        plot(exp_data{i}.Time_s_,exp_data{i}.CH5__C_,"k",LineWidth=1.5)
+        plot(exp_data{i}.Time_s_,exp_data{i}.CH6__C_,"k",LineWidth=1.5)
+        plot(exp_data{i}.Time_s_,exp_data{i}.CH7__C_,"k",LineWidth=1.5)
+        plot(exp_data{i}.Time_s_,exp_data{i}.CH8__C_,"k",LineWidth=1.5)
         plot(model_data{i}.Time,model_data{i}.CH1,"r",LineWidth=1.5)
         plot(model_data{i}.Time,model_data{i}.CH2,"r",LineWidth=1.5)
         plot(model_data{i}.Time,model_data{i}.CH3,"r",LineWidth=1.5)
@@ -28,32 +28,20 @@ function [] = plot_transient(exp_data,model_data,model_num,file_info)
         title(b{1} + " " + b{2} + " " + b{3})
         xlabel("Time (s)")
         ylabel("Temperature °C")
-        xlim([0,1000])
+        ylim padded
     end
+
+    legend("Experimental Data","","","","","","","","","Model Data",'Position',[0.595018446425396 0.244828578855089 0.253000004005432 0.0635445695733625])
 
     if model_num == 1.1
-        sgtitle("Model 1a Transient Response vs. Experimental")
+        sgtitle("Model 1A Transient vs. Experimental Response")
+        print("./Images/Model 1A Transient Response","-dpng","-r300")
     elseif model_num == 1.2
-        sgtitle("Model 1b Transient Response vs. Experimental")
+        sgtitle("Model 1B Transient vs. Experimental Response")
+        print("./Images/Model 1B Transient Response","-dpng","-r300")
     elseif model_num == 2
-        sgtitle("Model 2 Transient Response vs. Experimental")
+        sgtitle("Model 2 Transient vs. Experimental Response")
+        print("./Images/Model 2 Transient Response","-dpng","-r300")
     end
-
-    legend("Experiemental Data","","","","","","","","","Model Data",'Position',[0.731356000064144 0.343114293140803 0.13765823006127 0.0635445695733625])
-
-        
-
-        
-
-
-
-
-
-
-
-
-
-
-
 
 end

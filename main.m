@@ -42,11 +42,11 @@ T_0 = table2array(init.fit_data(:,2));
 %% Plotting Analytical Transient Solution Derivation
 
 % Aluminum 25V, t = 1s
-% plot_transient_analytical(steady.approx_steady_slope(1),T_0(1),const.ch_position(end),[1,1000],const,1)
+plot_transient_analytical(steady.approx_steady_slope(1),T_0(1),const.ch_position(end),[1,1000],const,1)
 
 %% Calculating u(x,t) for each model
 
-% Time Matrix
+% Time Vector (End time for each individual trial)
 t_vec = [height(data{1})*10,height(data{2})*10,height(data{3})*10,height(data{4})*10,height(data{5})*10];
 
 % Model 1a

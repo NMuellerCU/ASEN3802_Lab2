@@ -14,7 +14,10 @@ function [u] = calcSum_u(n,H,M,T_0,x,t,const,material_num,model_num)
 
             if material_num == 1
                 % Calculating u(x,t)
-                u = u + b_n * sin(lambda_n*x) * exp(-lambda_n^2 * const.alum.alpha * t);
+                a = sin(lambda_n*x);
+                b = exp(-lambda_n^2 * const.alum.alpha * t);
+                u = u + b_n*a*b;
+
             elseif material_num == 2
                 u = u + b_n * sin(lambda_n*x) * exp(-lambda_n^2 * const.brass.alpha * t);
             elseif material_num == 3
@@ -37,7 +40,7 @@ function [u] = calcSum_u(n,H,M,T_0,x,t,const,material_num,model_num)
         elseif model_num == 1
             b_n = 8*H*const.L*(-1)^n / ((2*n - 1)*pi)^2;
         elseif model_num == 2
-            b_n = 8*(M-H)*const.L*(-1)^(n+1) / ((2*n-1)*pi)^2;
+            b_n = 8*(M-H)*const.L*(-1)^(n+1) / ((2*n - 1)*pi)^2;
         end
 
     end
