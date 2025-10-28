@@ -1,6 +1,6 @@
 function [] = plot_transient(exp_data,model_data,model_num,file_info)
 
-    figure('Position',[50 50 600 700],'Units','Inches')
+    figure('Position',[50 50 700 700],'Units','Inches')
 
     for i = 1:length(model_data)
         subplot(3,2,i)
@@ -29,8 +29,24 @@ function [] = plot_transient(exp_data,model_data,model_num,file_info)
         xlabel("Time (s)")
         ylabel("Temperature °C")
         ylim padded
+        xlim tight
     end
 
+    annotation("arrow",[0.465,0.465],[0.70,0.89],"LineWidth",1.5)
+    annotation("textbox",[0.465,0.91,0.025,0.01],"String","CH8","EdgeColor","None")
+    annotation("textbox",[0.465,0.70,0.025,0.01],"String","CH0","EdgeColor","None")
+    annotation("arrow",[0.905,0.905],[0.70,0.89],"LineWidth",1.5)
+    annotation("textbox",[0.905,0.91,0.025,0.01],"String","CH8","EdgeColor","None")
+    annotation("textbox",[0.905,0.70,0.025,0.01],"String","CH0","EdgeColor","None")
+    annotation("arrow",[0.465,0.465],[0.41,0.60],"LineWidth",1.5)
+    annotation("textbox",[0.465,0.62,0.025,0.01],"String","CH8","EdgeColor","None")
+    annotation("textbox",[0.465,0.41,0.025,0.01],"String","CH0","EdgeColor","None")
+    annotation("arrow",[0.905,0.905],[0.41,0.60],"LineWidth",1.5)
+    annotation("textbox",[0.905,0.62,0.025,0.01],"String","CH8","EdgeColor","None")
+    annotation("textbox",[0.905,0.41,0.025,0.01],"String","CH0","EdgeColor","None")
+    annotation("arrow",[0.465,0.465],[0.12,0.31],"LineWidth",1.5)
+    annotation("textbox",[0.465,0.33,0.025,0.01],"String","CH8","EdgeColor","None")
+    annotation("textbox",[0.465,0.12,0.025,0.01],"String","CH0","EdgeColor","None")
     legend("Experimental Data","","","","","","","","","Model Data",'Position',[0.595018446425396 0.244828578855089 0.253000004005432 0.0635445695733625])
 
     if model_num == 1.1

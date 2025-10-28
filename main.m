@@ -42,7 +42,7 @@ T_0 = table2array(init.fit_data(:,2));
 %% Plotting Analytical Transient Solution Derivation
 
 % Aluminum 25V, t = 1s
-plot_transient_analytical(steady.approx_steady_slope(1),T_0(1),const.ch_position(end),[1,1000],const,1)
+% plot_transient_analytical(steady.approx_steady_slope(1),T_0(1),const.ch_position(end),[1,1000],const,1)
 
 %% Calculating u(x,t) for each model
 
@@ -50,13 +50,13 @@ plot_transient_analytical(steady.approx_steady_slope(1),T_0(1),const.ch_position
 t_vec = [height(data{1})*10,height(data{2})*10,height(data{3})*10,height(data{4})*10,height(data{5})*10];
 
 % Model 1a
-u_model_1a = calc_u_models(3,steady.approx_steady_slope,init.fit_data.Slope,T_0,const.ch_position,t_vec,const,[1,1,2,2,3],1,10);
+u_model_1a = calc_u_models(1,steady.approx_steady_slope,init.fit_data.Slope,T_0,const.ch_position,t_vec,const,[1,1,2,2,3],1,10);
 
 % Model 1b
-u_model_1b = calc_u_models(3,steady.fit_data.Slope,init.fit_data.Slope,T_0,const.ch_position,t_vec,const,[1,1,2,2,3],1,10);
+u_model_1b = calc_u_models(1,steady.fit_data.Slope,init.fit_data.Slope,T_0,const.ch_position,t_vec,const,[1,1,2,2,3],1,10);
 
 % Model 2
-u_model_2 = calc_u_models(3,steady.fit_data.Slope,init.fit_data.Slope,T_0,const.ch_position,t_vec,const,[1,1,2,2,3],2,10);
+u_model_2 = calc_u_models(1,steady.fit_data.Slope,init.fit_data.Slope,T_0,const.ch_position,t_vec,const,[1,1,2,2,3],2,10);
 
 %% Plotting Transient Solutions for Each Model
 
