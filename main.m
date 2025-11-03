@@ -77,3 +77,6 @@ u_model_3 = calc_u_model3(1,steady.fit_data.Slope,init.fit_data.Slope,T_0,const.
 % Model 3
 u_model_1b_alpha = calc_u_models(3,steady.fit_data.Slope,init.fit_data.Slope,T_0,const.ch_position,t_vec,const,[1,1,2,2,3],1,10,min_alpha);
 plot_transient(data,u_model_1b_alpha,3,file_info);
+
+
+steady_state_model3 = steady_state_times(u_model_1b_alpha, min_alpha, const);
