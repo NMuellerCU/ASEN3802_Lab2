@@ -1,30 +1,28 @@
 function [steady_model3] = steady_state_times(data, alpha, const)
     threshold = 1e-3; % 0.001, good threshold for slope
     L = const.L;
-    steady_model3.Time = 0;
-    steady_model3.Fo = 0;
+    steady_model3.Time = zeros(1,numel(data));
+    steady_model3.Fo = zeros(1,numel(data));
     for i = 1:5
 
-        x = [data{i}.Time_s_,data{i}.CH1__C_];       
-        y = gradient(x(:,2),x(:,1));
-            for j = 1:(length(x)-1)
-                if abs(y(j)) - threshold <= 0 % checks if y(j) is within our threshold
-                    b(j) = x(j,1);
-                end
-            end
-        first_zero_idx = find(b == 0, 1, 'last');
+        t = data{i}.Time_s_;
+        T = data{i}.CH1__C_;       
+        y = abs(gradient(t,T));
+            % for j = 1:(length(t)-1)
+            %     if abs(y(j)) - threshold <= 0 % checks if y(j) is within our threshold
+            %         b(j) = t(j);
+            %     end
+            % end
+        first_zero_idx = find(y <= threshold, 1, 'first');
         if isempty(first_zero_idx)
-            remaining_vector = b;
+            t_ss = t(end); % never hits steady state
         else
-            start_index = first_zero_idx + 1;
-            remaining_vector = b(start_index : end);
+            t_ss = t(first_zero_idx);
         end
-        t_ss = remaining_vector(1);
 
         steady_model3.Time(i) = t_ss;
         steady_model3.Fo(i) = alpha(i)*t_ss/(L^2);
 
-        b = 0;
     end
 end
 
