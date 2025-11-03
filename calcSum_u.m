@@ -1,4 +1,4 @@
-function [u] = calcSum_u(n,H,M,T_0,x,t,const,material_num,model_num)
+function [u] = calcSum_u(n,H,M,T_0,x,t,const,material_num,model_num,alpha)
 
     % Calculating 
     u = T_0 + H*x; % steady state
@@ -12,16 +12,18 @@ function [u] = calcSum_u(n,H,M,T_0,x,t,const,material_num,model_num)
             % Calculating lambda_n
             lambda_n = calc_lambda_n(i,const);
 
-            if material_num == 1
-                % Calculating u(x,t)
-                a = sin(lambda_n*x);
-                b = exp(-lambda_n^2 * const.alum.alpha * t);
-                u = u + b_n*a*b;
-
-            elseif material_num == 2
-                u = u + b_n * sin(lambda_n*x) * exp(-lambda_n^2 * const.brass.alpha * t);
-            elseif material_num == 3
-                u = u + b_n * sin(lambda_n*x) * exp(-lambda_n^2 * const.steel.alpha * t);
+            if alpha == 0
+                if material_num == 1
+                    % Calculating u(x,t)
+                    u = u + b_n * sin(lambda_n*x) * exp(-lambda_n^2 * const.alum.alpha * t);
+    
+                elseif material_num == 2
+                    u = u + b_n * sin(lambda_n*x) * exp(-lambda_n^2 * const.brass.alpha * t);
+                elseif material_num == 3
+                    u = u + b_n * sin(lambda_n*x) * exp(-lambda_n^2 * const.steel.alpha * t);
+                end
+            else
+                u = u + b_n * sin(lambda_n*x) * exp(-lambda_n^2 * alpha * t);
             end
 
         end

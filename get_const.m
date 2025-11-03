@@ -29,4 +29,14 @@ function [const] = get_const()
     const.A = pi/4*const.d^2; % cross sectional area [m^2]
     const.L = 0.149225; % length from x_0 to heater
 
+    % Alpha Matrix
+    const.range = [0.1,1.9];
+    const.n = 61;
+    const.alpha_mat = zeros(const.n,5);
+    const.alpha_mat(:,1) = linspace(const.range(1)*const.alum.alpha,const.range(2)*const.alum.alpha,const.n);
+    const.alpha_mat(:,2) = linspace(const.range(1)*const.alum.alpha,const.range(2)*const.alum.alpha,const.n);
+    const.alpha_mat(:,3) = linspace(const.range(1)*const.brass.alpha,const.range(2)*const.brass.alpha,const.n);
+    const.alpha_mat(:,4) = linspace(const.range(1)*const.brass.alpha,const.range(2)*const.brass.alpha,const.n);
+    const.alpha_mat(:,5) = linspace(const.range(1)*const.steel.alpha,const.range(2)*const.steel.alpha,const.n);
+
 end

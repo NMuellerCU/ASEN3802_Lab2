@@ -1,4 +1,4 @@
-function [u_cell] = calc_u_models(n,H,M,T_0,x,time,const,material_num,model_num,t_step)
+function [u_cell] = calc_u_models(n,H,M,T_0,x,time,const,material_num,model_num,t_step,alpha)
     % n - number of terms on Fourier series
     % H - steady state temperature slope (degreeC/m)
     % M - initial temperature slope (degreeC/m)
@@ -22,7 +22,7 @@ function [u_cell] = calc_u_models(n,H,M,T_0,x,time,const,material_num,model_num,
             % Iterating through each channel (thermocouple) at specific time to calculate temperature
             for k = 1:length(x)
                 % Calling calculate temperature function for each cell
-                temp_mat(t+1,k+1) = calcSum_u(n,H(i),M(i),T_0(i),x(k),temp_mat(t+1,1),const,material_num(i),model_num);
+                temp_mat(t+1,k+1) = calcSum_u(n,H(i),M(i),T_0(i),x(k),temp_mat(t+1,1),const,material_num(i),model_num,alpha(i));
             end
         end
 

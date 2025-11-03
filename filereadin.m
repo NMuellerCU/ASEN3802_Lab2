@@ -23,4 +23,7 @@ for i=1:length(a)
     ampval= strsplit(b{3},'mA'); % amps are always in the third portion
     volts(i) = str2double(v{1}); % convert string to number (vector)
     amps(i) = str2double(ampval{1});
+
+    % Removing NANs
+    data{i} = rmmissing(data{i});
 end

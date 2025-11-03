@@ -56,8 +56,11 @@ function [] = plot_transient(exp_data,model_data,model_num,file_info)
         sgtitle("Model 1B Transient vs. Experimental Response")
         print("./Images/Model 1B Transient Response","-dpng","-r300")
     elseif model_num == 2
-        sgtitle("Model 2 Transient vs. Experimental Response")
+        sgtitle("Model II Transient vs. Experimental Response")
         print("./Images/Model 2 Transient Response","-dpng","-r300")
+    elseif model_num == 3
+        sgtitle("Model III Transient vs. Experimental Response")
+        print("./Images/Model 3 Transient Response","-dpng","-r300")
     end
 
 end

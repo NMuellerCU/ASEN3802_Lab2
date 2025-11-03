@@ -47,19 +47,33 @@ T_0 = table2array(init.fit_data(:,2));
 %% Calculating u(x,t) for each model
 
 % Time Vector (End time for each individual trial)
-t_vec = [height(data{1})*10,height(data{2})*10,height(data{3})*10,height(data{4})*10,height(data{5})*10];
+t_vec = [(height(data{1})-2)*10,(height(data{2})-2)*10,(height(data{3})-2)*10,(height(data{4})-2)*10,(height(data{5})-2)*10];
 
 % Model 1a
-u_model_1a = calc_u_models(1,steady.approx_steady_slope,init.fit_data.Slope,T_0,const.ch_position,t_vec,const,[1,1,2,2,3],1,10);
+u_model_1a = calc_u_models(1,steady.approx_steady_slope,init.fit_data.Slope,T_0,const.ch_position,t_vec,const,[1,1,2,2,3],1,10,[0,0,0,0,0]);
 
 % Model 1b
-u_model_1b = calc_u_models(1,steady.fit_data.Slope,init.fit_data.Slope,T_0,const.ch_position,t_vec,const,[1,1,2,2,3],1,10);
+u_model_1b = calc_u_models(1,steady.fit_data.Slope,init.fit_data.Slope,T_0,const.ch_position,t_vec,const,[1,1,2,2,3],1,10,[0,0,0,0,0]);
 
 % Model 2
-u_model_2 = calc_u_models(1,steady.fit_data.Slope,init.fit_data.Slope,T_0,const.ch_position,t_vec,const,[1,1,2,2,3],2,10);
+u_model_2 = calc_u_models(1,steady.fit_data.Slope,init.fit_data.Slope,T_0,const.ch_position,t_vec,const,[1,1,2,2,3],2,10,[0,0,0,0,0]);
 
 %% Plotting Transient Solutions for Each Model
 
 plot_transient(data,u_model_1a,1.1,file_info);
 plot_transient(data,u_model_1b,1.2,file_info);
 plot_transient(data,u_model_2,2,file_info);
+
+%% Calculating Model 3
+
+u_model_3 = calc_u_model3(1,steady.fit_data.Slope,init.fit_data.Slope,T_0,const.ch_position,t_vec,const,[1,1,2,2,3],1,10,const.alpha_mat);
+
+%% Calculating RMSE for Model 3
+
+[RMSE_model_3,min_RMSE,min_alpha] = calc_RMSE_model3(data,u_model_3,const.alpha_mat);
+
+%% Recalculating Each 
+
+% Model 3
+u_model_1b_alpha = calc_u_models(3,steady.fit_data.Slope,init.fit_data.Slope,T_0,const.ch_position,t_vec,const,[1,1,2,2,3],1,10,min_alpha);
+plot_transient(data,u_model_1b_alpha,3,file_info);
