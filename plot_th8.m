@@ -14,10 +14,11 @@ function [] = plot_th8(exp_data, model1_data, model2_data, model3_data, model4_d
         else
             fill([exp_data{i}.Time_s_; flip(exp_data{i}.Time_s_)], [exp_data{i}.CH8__C_ - 2; flip(exp_data{i}.CH8__C_ + 2)], 'k','FaceAlpha','0.1','EdgeAlpha','0.15')
         end
-        plot(model1_data{i}.Time, model1_data{i}.CH8,'r')
-        plot(model2_data{i}.Time, model2_data{i}.CH8,'g')
-        plot(model3_data{i}.Time, model3_data{i}.CH8,'b')
-        plot(model4_data{i}.Time, model4_data{i}.CH8,'m')
+        plot(model1_data{i}.Time, model1_data{i}.CH8)
+        plot(model2_data{i}.Time, model2_data{i}.CH8)
+        plot(model3_data{i}.Time, model3_data{i}.CH8)
+        plot(model4_data{i}.Time, model4_data{i}.CH8)
+        colororder("gem")
         hold off
 
         b = strsplit(file_info(i).name,'_');
